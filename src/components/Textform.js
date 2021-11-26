@@ -45,7 +45,7 @@ export default function Textform(props) {
         style={{
           backgroundColor:
             props.mode === "dark" || props.theme === "green" || "blue" || "pink"
-              ? `${props.theme}`
+              ? "dark"
               : "white",
           color: props.mode === "dark" ? "white" : "#0f2b54",
         }}
@@ -86,8 +86,8 @@ export default function Textform(props) {
               props.theme === "green" ||
               "blue" ||
               "pink"
-                ? `light${props.theme}`
-                : "white",
+                ? `light${props.theme || props.mode}`
+                : "blue",
             color: props.mode === "dark" ? "white" : "#0f2b54",
           }}
         >
@@ -147,16 +147,32 @@ export default function Textform(props) {
         style={{
           backgroundColor:
             props.mode === "dark" || props.theme === "green" || "blue" || "pink"
-              ? `${props.theme}`
+              ? `dark`
               : "white",
           color: props.mode === "dark" ? "white" : "#0f2b54",
         }}
       >
         <h1>Your Text Summary</h1>
-        <p>
+        <p
+          style={{
+            color:
+              text.length === 0
+                ? "grey"
+                : `${props.mode === "dark" ? "white" : "black"}`,
+          }}
+        >
           {text.split(" ").length} words and {text.length} characters
         </p>
-        <p>{0.008 * text.split(" ").length} minutes read</p>
+        <p
+          style={{
+            color:
+              text.length === 0
+                ? "grey"
+                : `${props.mode === "dark" ? "white" : "black"}`,
+          }}
+        >
+          {0.008 * text.split(" ").length} minutes read
+        </p>
         <h2>Preview</h2>
         <p
           style={{
