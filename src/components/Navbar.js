@@ -1,6 +1,7 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 // import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
   const handlechange = (event) => {
@@ -14,9 +15,9 @@ export default function Navbar(props) {
     >
       {/* `` are refer to as template liteal which help us to include js in a class just add ${} to use conditional redenring  */}
       <div className="container-fluid" id="nav">
-        <Link className="navbar-brand" to="/">
+        <a className="navbar-brand" href="#">
           {props.title}
-        </Link>
+        </a>
         <button
           className="navbar-toggler"
           type="button"
@@ -31,15 +32,18 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link" to="/home">
+              {/* <Link className="nav-link" to="/home"> */}
+              <a className="nav-link-active" aria-current="page" href="#">
                 Home
-              </Link>
+              </a>
+              {/* </Link> */}
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/about">
+              {/* <Link className="nav-link" to="/about"> */}
+              <a className="nav-link" href="#">
                 {props.about}
-              </Link>
+              </a>
             </li>
           </ul>
           <form className="d-flex">

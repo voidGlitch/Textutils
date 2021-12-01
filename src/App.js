@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./App.css";
-import About from "./components/About";
+// import About from "./components/About";
 import Navbar from "./components/Navbar";
 import Textform from "./components/Textform";
 import Alert from "./components/Alert";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const [mode, setmode] = useState("light");
@@ -55,41 +55,41 @@ function App() {
   };
   return (
     <>
-      <Router>
-        <Navbar
-          title="textutiles"
-          about="about"
+      {/* <Router> */}
+      <Navbar
+        title="textutiles"
+        about="about"
+        mode={mode}
+        toggle={toggle}
+        theme={theme}
+        setcolor={setcolor}
+      />
+      <Alert alert={alert} />
+      {/* <Navbar /> */}
+      <div className="container my-3">
+        {/* <Switch> */}
+        {/* <Route exact path="/"> */}
+        <Textform
+          title="Enter your text to analyse"
           mode={mode}
-          toggle={toggle}
+          showalert={showalert}
           theme={theme}
-          setcolor={setcolor}
         />
-        <Alert alert={alert} />
-        {/* <Navbar /> */}
-        <div className="container my-3">
-          <Switch>
-            <Route exact path="/">
-              <Textform
-                title="Enter your text to analyse"
-                mode={mode}
-                showalert={showalert}
-                theme={theme}
-              />
-            </Route>
-            <Route exact path="/home">
-              <Textform
-                title="Enter your text to analyse"
-                mode={mode}
-                showalert={showalert}
-                theme={theme}
-              />
-            </Route>
-            <Route exact path="/about">
-              <About />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+        {/* </Route> */}
+        {/* <Route exact path="/home"> */}
+        <Textform
+          title="Enter your text to analyse"
+          mode={mode}
+          showalert={showalert}
+          theme={theme}
+        />
+        {/* </Route> */}
+        {/* <Route exact path="/about"> */}
+        {/* <About /> */}
+        {/* </Route> */}
+        {/* </Switch> */}
+      </div>
+      {/* </Router> */}
     </>
   );
 }
