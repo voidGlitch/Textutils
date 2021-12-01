@@ -1,10 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
   const handlechange = (event) => {
     props.setcolor(event.target.value);
-    console.log("clicked" + event.target.value);
+    console.log("clicked in nav" + event.target.value);
   };
 
   return (
@@ -13,9 +14,9 @@ export default function Navbar(props) {
     >
       {/* `` are refer to as template liteal which help us to include js in a class just add ${} to use conditional redenring  */}
       <div className="container-fluid" id="nav">
-        <a className="navbar-brand" href="\">
+        <Link className="navbar-brand" to="/">
           {props.title}
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -30,15 +31,15 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="\">
+              <Link className="nav-link" to="/home">
                 Home
-              </a>
+              </Link>
             </li>
 
             <li className="nav-item">
-              <a className="nav-link disabled" href="/">
+              <Link className="nav-link" to="/about">
                 {props.about}
-              </a>
+              </Link>
             </li>
           </ul>
           <form className="d-flex">
@@ -56,6 +57,7 @@ export default function Navbar(props) {
                 <option value="green">Green</option>
                 <option value="pink">pink</option>
                 <option value="blue">Blue</option>
+                <option value="default">default</option>
               </select>
             </div>
             <div
@@ -89,12 +91,12 @@ export default function Navbar(props) {
   );
 }
 
-Navbar.propTypes = {
-  title: PropTypes.string.isRequired,
-  about: PropTypes.string,
-};
+// Navbar.propTypes = {
+//   title: PropTypes.string.isRequired,
+//   about: PropTypes.string,
+// };
 
-Navbar.defaultProps = {
-  title: "set the title",
-  about: "set the about text here",
-};
+// Navbar.defaultProps = {
+//   title: "set the title",
+//   about: "set the about text here",
+// };

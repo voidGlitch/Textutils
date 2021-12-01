@@ -13,7 +13,7 @@ export default function About() {
         color: "white",
         backgroundColor: "black",
       });
-      setbtnmode("Enable light mode");
+      document.body.style.backgroundColor = "#2e363e";
     } else {
       setmystyle({
         color: "black",

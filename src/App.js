@@ -1,9 +1,10 @@
+import React, { useState } from "react";
 import "./App.css";
-// import About from "./components/About";
+import About from "./components/About";
 import Navbar from "./components/Navbar";
 import Textform from "./components/Textform";
-import React, { useState } from "react";
 import Alert from "./components/Alert";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const [mode, setmode] = useState("light");
@@ -24,9 +25,20 @@ function App() {
     //   console.log("selected color " + document.body.style.backgroundColor);
     //   settheme(document.body.style.backgroundColor);
     // }
-    settheme(color);
-    console.log("color is " + color);
-    document.body.style.backgroundColor = color;
+    if (mode === "light" && color === "default") {
+      color = "white";
+      settheme(color);
+      console.log("here color is " + color);
+      document.body.style.backgroundColor = "white";
+    }
+    if (mode === "dark" && color === "default") {
+      color = "#2e363e";
+      settheme(color);
+      console.log(color);
+      document.body.style.backgroundColor = "#2e363e";
+    } else {
+      document.body.style.backgroundColor = color;
+    }
   };
 
   const toggle = () => {
@@ -34,6 +46,7 @@ function App() {
       setmode("dark");
       document.body.style.backgroundColor = "#2e363e";
       showalert("dark mode has been enabled", "success");
+      document.title = "Textutiles - Dark mode";
     } else {
       setmode("light");
       document.body.style.backgroundColor = "white";
@@ -42,25 +55,41 @@ function App() {
   };
   return (
     <>
-      <Navbar
-        title="textutiles"
-        about="abouttext"
-        mode={mode}
-        toggle={toggle}
-        theme={theme}
-        setcolor={setcolor}
-      />
-      <Alert alert={alert} />
-      {/* <Navbar /> */}
-      <div className="container my-3">
-        <Textform
-          title="Enter your text to analyse"
+      <Router>
+        <Navbar
+          title="textutiles"
+          about="about"
           mode={mode}
-          showalert={showalert}
+          toggle={toggle}
           theme={theme}
+          setcolor={setcolor}
         />
-        {/* <About /> */}
-      </div>
+        <Alert alert={alert} />
+        {/* <Navbar /> */}
+        <div className="container my-3">
+          <Switch>
+            <Route exact path="/">
+              <Textform
+                title="Enter your text to analyse"
+                mode={mode}
+                showalert={showalert}
+                theme={theme}
+              />
+            </Route>
+            <Route exact path="/home">
+              <Textform
+                title="Enter your text to analyse"
+                mode={mode}
+                showalert={showalert}
+                theme={theme}
+              />
+            </Route>
+            <Route exact path="/about">
+              <About />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </>
   );
 }
